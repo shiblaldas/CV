@@ -74,23 +74,21 @@
       z-index: 999;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s;
-      margin-left: 10px;
     }
     .toggle-theme:hover,
     .print-button:hover,
     .reset-theme:hover {
       transform: scale(1.1);
     }
-    /* Align buttons horizontally with equal gaps */
-    .buttons-wrapper {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      display: flex;
-      gap: 15px;
-      z-index: 999;
+    .toggle-theme {
+      right: 100px;
     }
-
+    .print-button {
+      right: 60px;
+    }
+    .reset-theme {
+      right: 15px;
+    }
     .print-area {
       width: 90%;
       max-width: 1200px;
@@ -102,7 +100,6 @@
       align-items: center;
       background-color: var(--header-bg);
       padding: 20px;
-      page-break-inside: avoid;
     }
     .header img {
       width: 150px;
@@ -142,13 +139,13 @@
     .left-area {
       background-color: var(--accent-color);
       color: white;
-      flex: 1 1 100%;
+      flex: 1 1 30%;
+      min-width: 280px;
     }
     .right-area {
       background: var(--right-bg);
-      flex: 1 1 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      flex: 1 1 65%;
+      min-width: 320px;
     }
     .resume_item {
       margin-bottom: 30px;
@@ -230,7 +227,6 @@
     .work-groupe,
     .edu-group {
       margin-bottom: 20px;
-      page-break-inside: avoid;
     }
     .work-groupe h3,
     .edu-group h4 {
@@ -254,23 +250,6 @@
         flex: 0 0 70%;
       }
     }
-    @media (max-width: 992px) {
-      .content {
-        flex-direction: column;
-      }
-      .left-area,
-      .right-area {
-        flex: 1 1 100%;
-        min-width: auto;
-        padding: 20px;
-      }
-      .left-area {
-        order: 2;
-      }
-      .right-area {
-        order: 1;
-      }
-    }
     @media (max-width: 576px) {
       .header-text h1 {
         font-size: 1.8rem;
@@ -282,334 +261,285 @@
         width: 120px;
         height: 120px;
       }
-    }
-    @media (max-width: 480px) {
-      body {
-        font-size: 14px;
-      }
-      .header-text h1 {
-        font-size: 1.6rem;
-      }
-      .header-text p {
-        font-size: 0.9rem;
-      }
       .left-area,
       .right-area {
-        padding: 15px 10px;
-      }
-      .skill_name {
-        width: 30%;
-      }
-      .skill_progress {
-        width: 55%;
-      }
-      .skill_per {
-        width: 15%;
-      }
-    }
-    @media (max-width: 600px) {
-      /* Adjust button positions and spacing on smaller screens */
-      .buttons-wrapper {
-        right: 10px;
-        gap: 12px;
+        flex: 1 1 100%;
       }
     }
     @media print {
-      /* Remove background & shadows for clean print */
-      body,
+      body {
+        background: white !important;
+        color: black !important;
+      }
       .header,
       .left-area,
       .right-area {
         background: white !important;
         color: black !important;
+      }
+      .header img {
+        filter: none !important;
         box-shadow: none !important;
+        border: none !important;
       }
-
-      /* Remove background images and animations */
-      body {
-        background-image: none !important;
-        animation: none !important;
-      }
-
-      /* Make fonts black and no color */
       .icon {
-        background: black !important;
-        color: white !important;
+        background: #000 !important;
+        color: #fff !important;
       }
-
-      /* Remove buttons */
-      .buttons-wrapper {
-        display: none !important;
+      .toggle-theme,
+      .print-button,
+      .reset-theme {
+        display: none;
       }
-
-      /* Ensure print area uses full width and no margin */
       .print-area {
-        width: 100% !important;
-        margin: 0 !important;
-      }
-
-      /* Prevent awkward page breaks inside work and education sections */
-      .work-groupe,
-      .edu-group {
-        page-break-inside: avoid;
-      }
-
-      /* Avoid breaking inside header */
-      .header {
-        page-break-inside: avoid;
-      }
-
-      /* Adjust headings for print */
-      h1,
-      h3,
-      h4 {
-        color: black !important;
-        page-break-after: avoid;
+        width: 100%;
+        margin: 0;
       }
     }
   </style>
 </head>
 <body>
-  <div class="buttons-wrapper">
-    <button
-      class="toggle-theme"
-      onclick="toggleTheme()"
-      id="theme-toggle"
-      title="Toggle theme"
-      aria-label="Toggle theme"
-    >
-      🌙
-    </button>
-    <button
-      class="print-button"
-      onclick="window.print()"
-      title="Print or Save PDF"
-      aria-label="Print or Save PDF"
-    >
-      <i class="fas fa-print"></i>
-    </button>
-    <button
-      class="reset-theme"
-      onclick="resetTheme()"
-      title="Reset theme preference"
-      aria-label="Reset theme preference"
-    >
-      ⟳
-    </button>
-  </div>
+  <button
+    class="toggle-theme"
+    onclick="toggleTheme()"
+    id="theme-toggle"
+    title="Toggle theme"
+  >
+    🌙
+  </button>
+  <button
+    class="print-button"
+    onclick="window.print()"
+    title="Print or Save PDF"
+  >
+    <i class="fas fa-print"></i>
+  </button>
+  <button
+    class="reset-theme"
+    onclick="resetTheme()"
+    title="Reset theme preference"
+  >
+    ⟳
+  </button>
 
   <div class="print-area">
-    <section>
-      <div class="header">
-        <img src="my pic.jpg" alt="profile" />
-        <div class="header-text">
-          <h1>Shib Lal Das</h1>
-          <p>Digital Marketer</p>
-        </div>
+    <div class="header">
+      <img src="my pic.jpg" alt="profile" />
+      <div class="header-text">
+        <h1>Shib Lal Das</h1>
+        <p>Digital Marketer</p>
       </div>
-
-      <div class="content">
-        <div class="left-area">
-          <div class="resume_content">
-            <div class="resume_item resume_info">
-              <div class="title">
-                <p class="bold">contact Info</p>
-              </div>
-              <ul>
-                <li>
-                  <div class="icon">
-                    <i class="fas fa-map-signs"></i>
-                  </div>
-                  <div class="data">
-                    8623 Kakardha, Barishal <br /> Bangladesh
-                  </div>
-                </li>
-                <li>
-                  <div class="icon">
-                    <i class="fas fa-mobile-alt"></i>
-                  </div>
-                  <div class="data">+880 1735420907</div>
-                </li>
-                <li>
-                  <div class="icon">
-                    <i class="fas fa-envelope"></i>
-                  </div>
-                  <div class="data">shiblaldas77@gmail.com</div>
-                </li>
-                <li>
-                  <div class="icon">
-                    <i class="fab fa-weebly"></i>
-                  </div>
-                  <div class="data">www.shiblaldas.com</div>
-                </li>
-              </ul>
+    </div>
+    <div class="content">
+      <div class="left-area">
+        <div class="resume_content">
+          <div class="resume_item resume_info">
+            <div class="title">
+              <p class="bold">Contact Info</p>
             </div>
-
-            <div class="resume_item resume_skills">
-              <div class="title">
-                <p class="bold">skill's</p>
-              </div>
-              <ul>
-                <li>
-                  <div class="skill_name">SMM</div>
-                  <div class="skill_progress"><span style="width: 80%"></span></div>
-                  <div class="skill_per">88%</div>
-                </li>
-                <li>
-                  <div class="skill_name">SEM</div>
-                  <div class="skill_progress"><span style="width: 70%"></span></div>
-                  <div class="skill_per">70%</div>
-                </li>
-                <li>
-                  <div class="skill_name">SEO</div>
-                  <div class="skill_progress"><span style="width: 90%"></span></div>
-                  <div class="skill_per">90%</div>
-                </li>
-                <li>
-                  <div class="skill_name">Shopify</div>
-                  <div class="skill_progress"><span style="width: 60%"></span></div>
-                  <div class="skill_per">85%</div>
-                </li>
-                <li>
-                  <div class="skill_name">WP</div>
-                  <div class="skill_progress"><span style="width: 88%"></span></div>
-                  <div class="skill_per">80%</div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="resume_item resume_social">
-              <div class="title">
-                <p class="bold">Social</p>
-              </div>
-              <ul>
-                <li>
-                  <div class="icon">
-                    <i class="fab fa-facebook-square"></i>
-                  </div>
-                  <div class="data">
-                    <p class="semi-bold">Facebook</p>
-                    <p>@shiblalmon</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="icon">
-                    <i class="fab fa-twitter-square"></i>
-                  </div>
-                  <div class="data">
-                    <p class="semi-bold">Twitter</p>
-                    <p>@shiblalmon</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="icon">
-                    <i class="fab fa-instagram"></i>
-                  </div>
-                  <div class="data">
-                    <p class="semi-bold">Instagram</p>
-                    <p>@shiblalmon</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="icon">
-                    <i class="fab fa-linkedin"></i>
-                  </div>
-                  <div class="data">
-                    <p class="semi-bold">Linkedin</p>
-                    <p>@shiblaldas</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="icon">
-                    <i class="fab fa-telegram"></i>
-                  </div>
-                  <div class="data">
-                    <p class="semi-bold">Telegram</p>
-                    <p>@shiblalmon</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="icon">
-                    <i class="fab fa-youtube"></i>
-                  </div>
-                  <div class="data">
-                    <p class="semi-bold">YouTube</p>
-                    <p>@shiblaldas</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <ul>
+              <li>
+                <div class="icon">
+                  <i class="fas fa-map-signs"></i>
+                </div>
+                <div class="data">
+                  8623 Kakardha, Barishal <br />
+                  Bangladesh
+                </div>
+              </li>
+              <li>
+                <div class="icon">
+                  <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="data">+880 1735420907</div>
+              </li>
+              <li>
+                <div class="icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="data">shiblaldas77@gmail.com</div>
+              </li>
+              <li>
+                <div class="icon">
+                  <i class="fab fa-weebly"></i>
+                </div>
+                <div class="data">www.shiblaldas.com</div>
+              </li>
+            </ul>
           </div>
-        </div>
-
-        <div class="right-area">
-          <div class="about">
-            <h1><span><i class="far fa-user"></i></span>ABOUT ME</h1>
+          <div class="resume_item resume_skills">
+            <div class="title">
+              <p class="bold">Skill's</p>
+            </div>
+            <ul>
+              <li>
+                <div class="skill_name">SMM</div>
+                <div class="skill_progress">
+                  <span style="width: 80%"></span>
+                </div>
+                <div class="skill_per">88%</div>
+              </li>
+              <li>
+                <div class="skill_name">SEM</div>
+                <div class="skill_progress">
+                  <span style="width: 70%"></span>
+                </div>
+                <div class="skill_per">70%</div>
+              </li>
+              <li>
+                <div class="skill_name">SEO</div>
+                <div class="skill_progress">
+                  <span style="width: 90%"></span>
+                </div>
+                <div class="skill_per">90%</div>
+              </li>
+              <li>
+                <div class="skill_name">Shopify</div>
+                <div class="skill_progress">
+                  <span style="width: 60%"></span>
+                </div>
+                <div class="skill_per">85%</div>
+              </li>
+              <li>
+                <div class="skill_name">WP</div>
+                <div class="skill_progress">
+                  <span style="width: 88%"></span>
+                </div>
+                <div class="skill_per">80%</div>
+              </li>
+            </ul>
           </div>
-          <p>
-            Hi, <br />
-            This is Shib Lal Das from Barishal, Bangladesh a professional Digital
-            Marketer. I provide all types of Digital Marketing services. I am
-            highly skilled in Social Media Marketing, Facebook Ads Manager,
-            Facebook Pixel, Google Analytics, Google Adwords, Google Shopping,
-            Email Marketing, SEO/SEM, etc. I will help to grow your business
-            with a targeted audience. I am also exparianced in WordPress and
-            Shopify.I'm looking forward to working with you! :)
-          </p>
-
-          <div class="work">
-            <h1><span><i class="fas fa-suitcase-rolling"></i></span>WORK EXPERIANCE</h1>
-            <div class="work-groupe">
-              <h3>DIGITAL MARKETING MANAGER</h3>
-              <h4>WebCoder-IT</h4>
-              <span>2019 - Present</span>
-              <p>
-                Developed and implemented a targeted digitalstrategy to improve
-                business performance. Increased engagement through social
-                media. Directed successful search engine marketingcampaign
-              </p>
+          <div class="resume_item resume_social">
+            <div class="title">
+              <p class="bold">Social</p>
             </div>
-            <div class="work-groupe">
-              <h3>MARKETING EXECUTIVE</h3>
-              <h4>Creative-IT</h4>
-              <span>2018 - 2019</span>
-              <p>
-                Created social media content with consistentcontent and tone.
-                Successfully launched offline and onlinetargeting and marketing
-                strategy.
-              </p>
-            </div>
-          </div>
-
-          <div class="education">
-            <h1><span><i class="fas fa-book"></i></span>EDUCATION</h1>
-            <div class="edu-group">
-              <h4>
-                NATIONAL UNIVERSITY, BANGLADESH <br />Honours Bachelors Degree
-              </h4>
-              <span>2014-2018</span>
-              <p>BBA, Complate My Bachelor Degree In Business </p>
-            </div>
-            <div class="edu-group">
-              <h4>
-                HELAL UDDIN AHMED DEGREE COLLEGE. <br />
-                Higher Secondary Education (11th-12th) standard
-              </h4>
-              <span>2011-2013</span>
-              <p>HSC, Passed With GPA 4.50(A) From Science Dependent</p>
-            </div>
-            <div class="edu-group">
-              <h4>
-                KAKARDHA A.K.M.INSTITUTION <br />
-                Secondary Education (6th-10th) Standard
-              </h4>
-              <span>2006-2011</span>
-              <p>SSC, Passed With GPA 5.00(A+) From Science Dependent</p>
-            </div>
+            <ul>
+              <li>
+                <div class="icon">
+                  <i class="fab fa-facebook-square"></i>
+                </div>
+                <div class="data">
+                  <p class="semi-bold">Facebook</p>
+                  <p>@shiblalmon</p>
+                </div>
+              </li>
+              <li>
+                <div class="icon">
+                  <i class="fab fa-twitter-square"></i>
+                </div>
+                <div class="data">
+                  <p class="semi-bold">Twitter</p>
+                  <p>@shiblalmon</p>
+                </div>
+              </li>
+              <li>
+                <div class="icon">
+                  <i class="fab fa-instagram"></i>
+                </div>
+                <div class="data">
+                  <p class="semi-bold">Instagram</p>
+                  <p>@shiblalmon</p>
+                </div>
+              </li>
+              <li>
+                <div class="icon">
+                  <i class="fab fa-linkedin"></i>
+                </div>
+                <div class="data">
+                  <p class="semi-bold">Linkedin</p>
+                  <p>@shiblaldas</p>
+                </div>
+              </li>
+              <li>
+                <div class="icon">
+                  <i class="fab fa-telegram"></i>
+                </div>
+                <div class="data">
+                  <p class="semi-bold">Telegram</p>
+                  <p>@shiblalmon</p>
+                </div>
+              </li>
+              <li>
+                <div class="icon">
+                  <i class="fab fa-youtube"></i>
+                </div>
+                <div class="data">
+                  <p class="semi-bold">YouTube</p>
+                  <p>@shiblaldas</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </section>
+      <div class="right-area">
+        <div class="about">
+          <h1><span><i class="far fa-user"></i></span>ABOUT ME</h1>
+        </div>
+        <p>
+          Hi, <br />
+          This is Shib Lal Das from Barishal, Bangladesh a professional Digital
+          Marketer. I provide all types of Digital Marketing services. I am
+          highly skilled in Social Media Marketing, Facebook Ads Manager,
+          Facebook Pixel, Google Analytics, Google Adwords, Google Shopping,
+          Email Marketing, SEO/SEM, etc. I will help to grow your business with
+          a targeted audience. I am also exparianced in WordPress and Shopify.I'm
+          looking forward to working with you! :)
+        </p>
+        <div class="work">
+          <h1>
+            <span><i class="fas fa-suitcase-rolling"></i></span>WORK EXPERIANCE
+          </h1>
+          <div class="work-groupe">
+            <h3>DIGITAL MARKETING MANAGER</h3>
+            <h4>WebCoder-IT</h4>
+            <span>2019 - Present</span>
+            <p>
+              Developed and implemented a targeted digitalstrategy to improve
+              business performance. Increased engagement through social media.
+              Directed successful search engine marketingcampaign
+            </p>
+          </div>
+          <div class="work-groupe">
+            <h3>MARKETING EXECUTIVE</h3>
+            <h4>Creative-IT</h4>
+            <span>2018 - 2019</span>
+            <p>
+              Created social media content with consistentcontent and tone.
+              Successfully launched offline and onlinetargeting and marketing
+              strategy.
+            </p>
+          </div>
+        </div>
+        <div class="education">
+          <h1><span><i class="fas fa-book"></i></span>EDUCATION</h1>
+          <div class="edu-group">
+            <h4>
+              NATIONAL UNIVERSITY, BANGLADESH <br />
+              Honours Bachelors Degree
+            </h4>
+            <span>2014-2018</span>
+            <p>BBA, Complate My Bachelor Degree In Business</p>
+          </div>
+          <div class="edu-group">
+            <h4>
+              HELAL UDDIN AHMED DEGREE COLLEGE. <br />
+              Higher Secondary Education (11th-12th) standard
+            </h4>
+            <span>2011-2013</span>
+            <p>HSC, Passed With GPA 4.50(A) From Science Dependent</p>
+          </div>
+          <div class="edu-group">
+            <h4>
+              KAKARDHA A.K.M.INSTITUTION <br />
+              Secondary Education (6th-10th) Standard
+            </h4>
+            <span>2006-2011</span>
+            <p>SSC, Passed With GPA 5.00(A+) From Science Dependent</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
