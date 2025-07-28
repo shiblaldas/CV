@@ -1,0 +1,180 @@
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+    body {
+      background-image: linear-gradient(125deg, #2c3e50, #27ae60, #2980b9, #e74c3c, #8e44ad);
+      background-size: 400% 400%;
+      animation: bganimation 15s infinite;
+    }
+    @keyframes bganimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    .print-area {
+      width: 90%;
+      margin: 20px auto;
+      max-width: 1200px;
+    }
+    .header {
+      width: 100%;
+      background-color: rgb(31, 34, 43);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      position: relative;
+      padding: 20px;
+    }
+    .header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+      filter: grayscale(100%);
+      transition: 0.3s;
+    }
+    .header img:hover {
+      filter: grayscale(0%);
+      transform: scale(1.05);
+      box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+    }
+    .header-text {
+      color: white;
+      margin-left: 20px;
+      flex: 1;
+    }
+    .header-text h1 {
+      font-size: 48px;
+    }
+    .header-text p {
+      font-size: 18px;
+      color: lightgray;
+    }
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      background: #fff;
+    }
+    .left-area, .right-area {
+      padding: 30px;
+    }
+    .left-area {
+      flex: 1 1 100%;
+      background-color: #0bb5f4;
+      color: #fff;
+    }
+    .right-area {
+      flex: 1 1 100%;
+      background: whitesmoke;
+    }
+    .resume_item {
+      margin-bottom: 30px;
+    }
+    .bold {
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+    .semi-bold {
+      font-weight: 500;
+      font-size: 16px;
+    }
+    ul {
+      list-style: none;
+    }
+    ul li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .icon {
+      width: 35px;
+      height: 35px;
+      background: #fff;
+      color: #0bb5f4;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+    }
+    .data {
+      color: #b1eaff;
+    }
+    .resume_skills ul li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #b1eaff;
+    }
+    .skill_name { width: 25%; }
+    .skill_progress {
+      width: 60%;
+      height: 5px;
+      background: #009fd9;
+      position: relative;
+      margin: 0 5px;
+    }
+    .skill_progress span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: #fff;
+    }
+    .skill_per { width: 15%; text-align: right; }
+    .right-area h1 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    .right-area h1 span {
+      margin-right: 10px;
+      font-size: 30px;
+      color: lightgray;
+    }
+    .right-area p {
+      text-align: justify;
+      font-size: 16px;
+      color: gray;
+      margin-bottom: 15px;
+    }
+    .work-groupe, .edu-group {
+      margin-bottom: 20px;
+    }
+    .work-groupe h3, .edu-group h4 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .work-groupe h4, .edu-group span {
+      color: gray;
+      font-size: 16px;
+    }
+    .edu-group span {
+      display: block;
+      margin-top: 5px;
+    }
+    @media (min-width: 768px) {
+      .left-area {
+        flex: 0 0 30%;
+      }
+      .right-area {
+        flex: 0 0 70%;
+      }
+    }
+    @media (min-width: 992px) {
+      .header-text h1 {
+        font-size: 60px;
+      }
+      .header-text p {
+        font-size: 20px;
+      }
+    }
+  </style>
