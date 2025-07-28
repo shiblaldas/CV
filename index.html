@@ -6,6 +6,23 @@
   <title>Shib Lal Das Cv</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <style>
+    :root {
+      --bg-color: white;
+      --text-color: black;
+      --accent-color: #0bb5f4;
+      --header-bg: rgb(31, 34, 43);
+      --header-text-color: white;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --accent-color: #0bb5f4;
+        --header-bg: #1e1e1e;
+        --header-text-color: #ffffff;
+      }
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -13,6 +30,8 @@
       font-family: sans-serif;
     }
     body {
+      background: var(--bg-color);
+      color: var(--text-color);
       background-image: linear-gradient(125deg,#2c3e50,#27ae60,#2980b9,#e74c3c,#8e44ad);
       background-size: 400% 400%;
       animation: bganimation 15s infinite;
@@ -32,7 +51,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      background-color: rgb(31, 34, 43);
+      background-color: var(--header-bg);
       padding: 20px;
     }
     .header img {
@@ -50,7 +69,7 @@
       box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
     }
     .header-text {
-      color: white;
+      color: var(--header-text-color);
       flex: 1;
       margin-left: 20px;
     }
@@ -64,18 +83,18 @@
     .content {
       display: flex;
       flex-wrap: wrap;
-      background: #fff;
+      background: var(--bg-color);
     }
     .left-area, .right-area {
       padding: 30px;
     }
     .left-area {
-      background-color: #0bb5f4;
-      color: #fff;
+      background-color: var(--accent-color);
+      color: white;
       flex: 1 1 100%;
     }
     .right-area {
-      background: whitesmoke;
+      background: var(--bg-color);
       flex: 1 1 100%;
     }
     .resume_item {
@@ -103,7 +122,7 @@
       width: 35px;
       height: 35px;
       background: #fff;
-      color: #0bb5f4;
+      color: var(--accent-color);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -177,6 +196,29 @@
       .header-text h1 { font-size: 1.8rem; }
       .header-text p { font-size: 1rem; }
       .header img { width: 120px; height: 120px; }
+    }
+    @media print {
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      .header, .left-area, .right-area {
+        background: white !important;
+        color: black !important;
+      }
+      .header img {
+        filter: none !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      .icon {
+        background: #000 !important;
+        color: #fff !important;
+      }
+      .print-area {
+        width: 100%;
+        margin: 0;
+      }
     }
   </style>
 </head>
@@ -387,6 +429,5 @@
                </div>
            </div>
       </div>    
-    </div>
-</body>
+    </div></body>
 </html>
